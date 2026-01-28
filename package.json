@@ -1,0 +1,63 @@
+{
+  "name": "cheesse",
+  "version": "1.0.0",
+  "description": "The Cheeseboard Arena - Chess GUI Application",
+  "main": "main.js",
+  "homepage": "./",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix Frontend\" \"npm run dev --prefix Backend\" \"wait-on http://localhost:5173 && electron .\"",
+    "start": "electron .",
+    "build": "npm run build --prefix Frontend",
+    "pack": "electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "electron-is-dev": "^3.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "electron": "^28.0.0",
+    "electron-builder": "^25.1.6",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.cheesse.app",
+    "productName": "Cheesse",
+    "files": [
+      "main.js",
+      "preload.js",
+      "Frontend/dist/**/*",
+      "Backend/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Cheesse"
+    }
+  }
+}

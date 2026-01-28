@@ -1,0 +1,13 @@
+{
+  "name": "cheesse-backend",
+  "version": "1.0.0",
+  "private": true,
+  "main": "script.js",
+  "scripts": {
+    "dev": "node script.js",
+    "start": "node script.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
